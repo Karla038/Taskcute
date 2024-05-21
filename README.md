@@ -37,7 +37,7 @@ Puertos Abiertos:
 - Se debe poder acceder al servidor de manera remota
 ### Puertos abiertos 
 - Configura el firewall: Permite solo los puertos necesarios (SSH, HTTP, HTTPS) y bloquea todo lo demás por defecto.
-- Monitorea y actualiza: Utiliza herramientas de monitoreo y mantén todo el software actualizado.
+
 
 ### Diponibilidad 
 si es posible las 24 hrs si no un hoarario de 8 horas de 8 a 6 pm 
