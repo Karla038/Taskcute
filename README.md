@@ -19,8 +19,7 @@ Asegúrate de tener instalados los siguientes requisitos antes de configurar el 
 - Angular CLI (versión 17)
 - Cuenta en MongoDB Atlas
 
-  ## Automatización de bakups
-  - Automatizacion de bakups semanales 
+
   
 
 ### Parámetros de Configuración
@@ -41,6 +40,9 @@ Puertos Abiertos:
 - Se debe poder acceder al servidor de manera remota
 ### Puertos abiertos 
 - Configura el firewall: Permite solo los puertos necesarios (SSH, HTTP, HTTPS) y bloquea todo lo demás por defecto.
+
+  ### Automatización de bakups
+  - Automatizacion de bakups semanales 
 
 
 ### Diponibilidad 
