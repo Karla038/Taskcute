@@ -19,6 +19,10 @@ Asegúrate de tener instalados los siguientes requisitos antes de configurar el 
 - Angular CLI (versión 17)
 - Cuenta en MongoDB Atlas
 
+  ## Automatización de bakups
+  - Automatizacion de bakups semanales 
+  
+
 ### Parámetros de Configuración
 
 ### Protocolos de Seguridad para el servidor
