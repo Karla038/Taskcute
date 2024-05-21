@@ -27,3 +27,14 @@ Configura el archivo `angular.json` para definir la base URL y otros parámetros
 
 ```sh
 ng build --prod
+
+### Protocolos de Seguridad para el servidor
+Puertos Abiertos:
+
+- 80 (HTTP): Para redireccionar tráfico a HTTPS.
+- 443 (HTTPS): Para comunicaciones seguras.
+#### Espacio en Disco:
+
+- Tamaño inicial de la aplicación: 50 MB - 200 MB.
+- Espacio para datos de usuarios: Comenzar con al menos 1 GB.
+- Espacio adicional para logs y backups: Reservar un 10-20% del espacio total.
