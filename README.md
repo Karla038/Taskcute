@@ -22,7 +22,7 @@ Asegúrate de tener instalados los siguientes requisitos antes de configurar el 
 
   
 
-### Parámetros de Configuración
+## Parámetros de Configuración
 
 ### Protocolos de Seguridad para el servidor
 Puertos Abiertos:
@@ -38,15 +38,15 @@ Puertos Abiertos:
 
 #### Acesso por ssh:
 - Se debe poder acceder al servidor de manera remota
-### Puertos abiertos 
+#### Puertos abiertos 
 - Configura el firewall: Permite solo los puertos necesarios (SSH, HTTP, HTTPS) y bloquea todo lo demás por defecto.
 
-  ### Automatización de bakups
-  - Automatizacion de bakups semanales 
+#### Automatización de bakups
+- Automatizacion de bakups semanales 
 
 
-### Diponibilidad 
-si es posible las 24 hrs si no un hoarario de 8 horas de 8 a 6 pm 
+#### Diponibilidad 
+si es posible las 24 hrs si no un horario de 8 horas de 8 a 6 pm 
 #### Angular
 
 Configura el archivo `angular.json` para definir la base URL y otros parámetros de producción. Para generar una build de producción, utiliza el siguiente comando:
