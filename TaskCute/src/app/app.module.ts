@@ -12,10 +12,13 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from './primeng.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+ CrudTareas
     TasckComponent
+
   ],
   imports: [
     BrowserModule,
