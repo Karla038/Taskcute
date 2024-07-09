@@ -1,0 +1,26 @@
+<h1>Registro de Tareas</h1>
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" pInputText [(ngModel)]="nuevaTarea.nombre" />
+  </div>
+  <div class="p-field p-col-12">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" pInputTextarea [(ngModel)]="nuevaTarea.descripcion"></textarea>
+  </div>
+  <div class="p-field p-col-12">
+    <label for="fechaVencimiento">Fecha de Vencimiento</label>
+    <p-calendar id="fechaVencimiento" [(ngModel)]="nuevaTarea.fechaVencimiento" dateFormat="dd/mm/yy"></p-calendar>
+  </div>
+  <div class="p-field p-col-12">
+    <button pButton type="button" label="Agregar" (click)="agregarTarea()"></button>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let tarea of tareas">
+    <input type="checkbox" [(ngModel)]="tarea.completada" (change)="actualizarTarea(tarea)" />
+    <strong>{{ tarea.nombre }}</strong> - {{ tarea.descripcion }} ({{ tarea.fechaVencimiento | date:'dd/MM/yyyy' }})
+    <button pButton type="button" icon="pi pi-times" (click)="eliminarTarea(tarea.id)"></button>
+  </li>
+</ul>
