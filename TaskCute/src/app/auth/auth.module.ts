@@ -1,6 +1,6 @@
 import { RegisterComponent } from "./register/register.component";
 import { BrowserModule } from "@angular/platform-browser";
-import { CommonModule } from "@angular/common";
+import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 
    ],
   imports: [
+    NgOptimizedImage,
       BrowserModule,
       CommonModule,
       // LayoutModule,
