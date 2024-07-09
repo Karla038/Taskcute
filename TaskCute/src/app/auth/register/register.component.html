@@ -1,45 +1,53 @@
-<div class="bg-pink-50 dark:bg-zinc-800 min-h-screen flex items-center justify-center">
-  <form class="bg-white dark:bg-zinc-900 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="username">
-        Nombre de usuario
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 leading-tight focus:outline-none focus:shadow-outline"
-        id="username"
-        type="text"
-        placeholder="Ingresa tu nombre de usuario"
-      />
+<div class="flex h-full w-full flex-col justify-center px-6 py-12 2xl:flex-row lg:items-center lg:px-8">
+  <div class="hidden lg:block lg:w-1/2 lg:pr-8">
+    <video class="w-full h-full" autoplay muted loop>
+      <source  src="./assets/videos/FormRegister.mp4" type="video/mp4">
+    </video>
+  </div>
+
+
+  <div class="lg:w-1/2">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img src="./assets/images/logo.png" alt="Taskcute">
+      <h2 class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900">Registrate</h2>
     </div>
-    <div class="mb-4">
-      <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="email">
-        Correo electrónico
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 leading-tight focus:outline-none focus:shadow-outline"
-        id="email"
-        type="email"
-        placeholder="Ingresa tu correo electrónico"
-      />
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium leading-6 text-gray-900">Nombre completo</label>
+          <div class="mt-2 py-4">
+            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo electronico</label>
+          <div class="mt-2">
+            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+          </div>
+          <div class="mt-2">
+            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <input name="" type="checkbox"/>
+          <a href="">Aceptar politica de privacidad de la página</a>
+        </div>
+
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-rose/80 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">Registrar</button>
+        </div>
+      </form>
+
+      <!-- <p class="mt-10 text-center text-sm text-gray-500">
+        Not a member?
+        <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
+      </p> -->
     </div>
-    <div class="mb-4">
-      <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="password">
-        Contraseña
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-        id="password"
-        type="password"
-        placeholder="******************"
-      />
-    </div>
-    <div class="flex items-center justify-center">
-      <button
-        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
-      >
-        Registrarse
-      </button>
-    </div>
-  </form>
+  </div>
 </div>

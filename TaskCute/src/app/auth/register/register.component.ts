@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+    ruta:string = '/assets/images/logo.png'
 }
