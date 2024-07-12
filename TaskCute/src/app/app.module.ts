@@ -1,39 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { RouterModule, RouterLink } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
-import { TasckComponent } from './tasck/tasck.component';
-import { HttpClientModule } from '@angular/common/http';
-import { CalendarModule } from 'primeng/calendar';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrimengModule } from './primeng.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { NgIconsModule } from '@ng-icons/core';
+import { featherAirplay } from '@ng-icons/feather-icons';
+import { heroUsers } from '@ng-icons/heroicons/outline';
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
- CrudTareas
-    TasckComponent
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    CalendarModule,
-    InputTextModule,
-    ButtonModule,
-    InputTextareaModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PrimengModule
+    AppRoutingModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
