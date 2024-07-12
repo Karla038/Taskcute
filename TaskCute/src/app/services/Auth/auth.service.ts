@@ -179,10 +179,9 @@ import { Observable, ReplaySubject, map, of } from 'rxjs';
 import { enviromentAuth } from '../../environments/environment.auth';
 import { Respuesta } from '../../models/Respuesta';
 import { Usuario } from '../../models/Usuario';
-import * as jwtDecodeModule from 'jwt-decode'; // Importar jwt-decode correctamente
+import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
 
-const jwt_decode = jwtDecodeModule.default || jwtDecodeModule;
 
 @Injectable({
   providedIn: 'root'
@@ -258,7 +257,7 @@ export class AuthService {
   public decodeToken(): any {
     const token = this.accessToken;
     console.log(token)
-    // const decodedToken: any = jwt_decode.default(token);
+    const decodedToken: any = jwtDecode(token);
     // console.log(decodedToken)
     // return decodedToken;
   }
@@ -268,7 +267,7 @@ export class AuthService {
     this.accessToken = respuesta.data;
     console.log(this.accessToken)
     this.autenticado = true;
-    // this.fechaExpiracion = jwt_decode(this.accessToken);
+    this.fechaExpiracion = jwtDecode(this.accessToken,  { header: true });
     localStorage.setItem('fechaExpiracion', this.fechaExpiracion.exp)
     console.log('fechaExpiracion')
     console.log(this.fechaExpiracion)

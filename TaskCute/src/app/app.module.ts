@@ -10,8 +10,6 @@ import { NgIconsModule } from '@ng-icons/core';
 import { featherAirplay } from '@ng-icons/feather-icons';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 
-
-
 import { TasckComponent } from './tasck/tasck.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CalendarModule } from 'primeng/calendar';
