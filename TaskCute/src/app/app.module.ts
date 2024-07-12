@@ -38,7 +38,6 @@ import { TaskTabComponent } from './task-tab/task-tab.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
     AppRoutingModule,
     HttpClientModule,
     CalendarModule,
