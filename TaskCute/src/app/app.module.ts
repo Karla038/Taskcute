@@ -12,17 +12,15 @@ import { heroUsers } from '@ng-icons/heroicons/outline';
 
 
 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AuthModule,
-    RouterModule,
-    RouterLink,
-    NgIconsModule.withIcons({ featherAirplay, heroUsers })
+    AppRoutingModule
   ],
   providers: [
     provideClientHydration(),
