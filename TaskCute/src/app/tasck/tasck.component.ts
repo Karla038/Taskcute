@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceTaskService } from '../services/service.task.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface Tarea {
   id: number;
@@ -12,13 +13,13 @@ interface Tarea {
 @Component({
   selector: 'app-tasck',
   templateUrl: './tasck.component.html',
-  styleUrl: './tasck.component.css'
+  styleUrls: ['./tasck.component.css'] // Corregido de styleUrl a styleUrls
 })
-export class TasckComponent {
+export class TasckComponent implements OnInit {
   tareas: Tarea[] = [];
   nuevaTarea: Tarea = { id: 0, nombre: '', descripcion: '', fechaVencimiento: undefined, completada: false };
 
-  constructor(private tareasService: ServiceTaskService) { }
+  constructor(private tareasService: ServiceTaskService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.obtenerTareas();
@@ -37,6 +38,8 @@ export class TasckComponent {
     }
   }
 
+
+  
   eliminarTarea(id: number): void {
     this.tareasService.eliminarTarea(id).subscribe(() => {
       this.tareas = this.tareas.filter(tarea => tarea.id !== id);
@@ -47,4 +50,27 @@ export class TasckComponent {
     this.tareasService.actualizarTarea(tarea).subscribe();
   }
 
+  showSuccess() {
+    this.toastr.success('¡Hola mundo!', '¡Diversión con Toastr!', {
+      closeButton: true
+    });
+  }
+
+  showError() {
+    this.toastr.error('¡Esto no es bueno!', 'Error grave', {
+      closeButton: true
+    });
+  }
+
+  showWarning() {
+    this.toastr.warning('Estás siendo advertido.', 'Advertencia', {
+      closeButton: true
+    });
+  }
+
+  showInfo() {
+    this.toastr.info('Solo alguna información para ti.', undefined, {
+      closeButton: true
+    });
+  }
 }

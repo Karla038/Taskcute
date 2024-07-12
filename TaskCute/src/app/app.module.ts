@@ -11,14 +11,21 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from './primeng.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { TaskTabComponent } from './task-tab/task-tab.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
- CrudTareas
-    TasckComponent
-
+    TasckComponent,
+    FooterComponent,
+    HeaderComponent,
+    TaskTabComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,16 @@ import { PrimengModule } from './primeng.module';
     InputTextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule, // Importa FormsModule aquí
+    BrowserAnimationsModule, // Necesario para ngx-toastr
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right', // Aparece en la parte superior derecha
+      timeOut: 5000,
+      preventDuplicates: true,
+      closeButton: true // Habilita el botón para cerrar
+    }),
+    AppRoutingModule // Agrega el AppRoutingModule
   ],
   providers: [
     provideClientHydration()

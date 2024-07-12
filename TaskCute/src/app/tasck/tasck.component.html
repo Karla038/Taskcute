@@ -1,26 +1,51 @@
-<h1>Registro de Tareas</h1>
-<div class="p-fluid p-formgrid p-grid">
-  <div class="p-field p-col-12">
-    <label for="nombre">Nombre</label>
-    <input id="nombre" type="text" pInputText [(ngModel)]="nuevaTarea.nombre" />
-  </div>
-  <div class="p-field p-col-12">
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion" pInputTextarea [(ngModel)]="nuevaTarea.descripcion"></textarea>
-  </div>
-  <div class="p-field p-col-12">
-    <label for="fechaVencimiento">Fecha de Vencimiento</label>
-    <p-calendar id="fechaVencimiento" [(ngModel)]="nuevaTarea.fechaVencimiento" dateFormat="dd/mm/yy"></p-calendar>
-  </div>
-  <div class="p-field p-col-12">
-    <button pButton type="button" label="Agregar" (click)="agregarTarea()"></button>
+<!-- Registro de Tareas -->
+<div class="p-6 bg-gray-100 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-4">Registro de Tareas</h1>
+
+  <!-- Componentes uno sobre otro con espacio entre ellos -->
+  <div class="space-y-4">
+    <div class="mb-4">
+      <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+      <input id="nombre" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.nombre" />
+    </div>
+
+    <div class="mb-4">
+      <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción:</label>
+      <textarea id="descripcion" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.descripcion"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="fechaVencimiento" class="block text-sm font-medium text-gray-700">Fecha de Vencimiento:</label>
+      <input id="fechaVencimiento" type="date" class="mt-1 block w-full max-w-xs border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.fechaVencimiento" />
+    </div>    
+
+    <div>
+      <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" (click)="agregarTarea()">Agregar</button>
+    </div>
   </div>
 </div>
 
-<ul>
-  <li *ngFor="let tarea of tareas">
-    <input type="checkbox" [(ngModel)]="tarea.completada" (change)="actualizarTarea(tarea)" />
-    <strong>{{ tarea.nombre }}</strong> - {{ tarea.descripcion }} ({{ tarea.fechaVencimiento | date:'dd/MM/yyyy' }})
-    <button pButton type="button" icon="pi pi-times" (click)="eliminarTarea(tarea.id)"></button>
-  </li>
-</ul>
+  <!-- <ul class="mt-4 space-y-2">
+    <li *ngFor="let tarea of tareas" class="flex items-center space-x-4 bg-white rounded-lg p-4 shadow-md">
+      <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" [(ngModel)]="tarea.completada" (change)="actualizarTarea(tarea)" />
+      <div class="flex-1">
+        <strong class="text-lg">{{ tarea.nombre }}</strong> - {{ tarea.descripcion }} 
+        <span class="text-sm text-gray-500">({{ tarea.fechaVencimiento | date:'dd/MM/yyyy' }})</span>
+      </div>
+      <button type="button" class="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-700">
+        <i class="pi pi-times"></i>
+      </button>
+    </li>
+  </ul> -->
+
+  <!-- <div style="text-align:center">
+    <h1>
+      Welcome to 
+    </h1>
+    <button (click)="showSuccess()">Show Success Toast</button>
+    <button (click)="showError()">Show Error Toast</button>
+    <button (click)="showWarning()">Show Warning Toast</button>
+    <button (click)="showInfo()">Show Info Toast</button>
+  </div>
+   -->
+

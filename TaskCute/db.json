@@ -1,10 +1,31 @@
 {
   "tareas": [
     {
+      "id": "0",
+      "nombre": "prueba1",
+      "descripcion": "prueba31",
+      "fechaVencimiento": "2024-07-05",
+      "completada": true
+    },
+    {
+      "id": "0",
+      "nombre": "prueba1",
+      "descripcion": "prueba31",
+      "fechaVencimiento": "2024-07-05",
+      "completada": false
+    },
+    {
       "id": 0,
-      "nombre": "Prueba",
-      "descripcion": "prueba prieba",
-      "fechaVencimiento": null,
+      "nombre": "aaaaaaaaaaa",
+      "descripcion": "aaaaaaaa",
+      "fechaVencimiento": "2024-07-09",
+      "completada": false
+    },
+    {
+      "id": 0,
+      "nombre": "estrella",
+      "descripcion": "estrella",
+      "fechaVencimiento": "2024-07-09",
       "completada": false
     }
   ]
