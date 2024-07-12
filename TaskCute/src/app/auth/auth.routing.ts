@@ -11,21 +11,6 @@ const routes:Routes = [
       //component: LayoutComponent,
       loadChildren:() => import('./authchild-routes.module').then(m=> m.AuthChildRoutesModule)
   },
-  {
-      path: '',
-      //canActivate: [AuthGuard],
-      //canActivateChild: [AuthGuard],
-      //component: LayoutComponent,
-      data: {
-          layout: 'empty'
-      },
-          // autenticacion con guardia
-      children: [
-          //{path: 'sign-out', component:AuthSignOutComponent},
-          //{path: 'unlock-session', component:AuthUnlockSessionComponent}
-      ]
-  },
-
   // {path: 'sign-in', component:AuthSignInComponent },
 
 ]
