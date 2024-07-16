@@ -1,9 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/Auth/auth.service';
 import { Respuesta } from '../../models/Respuesta';
 import { Usuario } from '../../models/Usuario';
 import { FormBuilder, FormGroup, NgForm, Validators, UntypedFormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 
 @Component({
@@ -12,6 +15,8 @@ import { FormBuilder, FormGroup, NgForm, Validators, UntypedFormBuilder } from '
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  readonly dialog = inject(MatDialog);
 
   constructor(
       private _autenticacionService: AuthService,
@@ -39,6 +44,14 @@ export class RegisterComponent {
             //role:        ['',[Validators.required]]
         });
     }
+
+    // openDialog() {
+    //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    //   dialogRef.afterClosed().subscribe(result => {
+    //     console.log(`Dialog result: ${result}`);
+    //   });
+    // }
 
     private errorRespuesta(error:string){
       // Re-enable the form
