@@ -90,7 +90,6 @@ export class RegisterComponent {
         };
 
         this._autenticacionService.decodificarPorId(respuesta);
-
     },
     error:(error)=>{
         console.log(error)

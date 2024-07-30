@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       MatSelectModule,
       MatCheckboxModule,
       ReactiveFormsModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatDialogModule,
   ],
   exports: [
     RegisterComponent,
