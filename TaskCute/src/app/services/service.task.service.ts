@@ -16,7 +16,7 @@ interface Tarea {
   providedIn: 'root'
 })
 export class ServiceTaskService {
-  private apiUrl = `http://localhost:3001/api/tasks`; // URL base para la API de tareas
+  private apiUrl = `http://localhost:4000/api/tasks`; // URL base para la API de tareas
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +29,7 @@ export class ServiceTaskService {
   getTasks(): Observable<Tarea[]> {
     return this.http.get<Tarea[]>(`${this.apiUrl}`);
   }
-  
+
 
   // Obtener tareas por ID de usuario
   getTasksByUserId(idUsuario: string): Observable<Tarea[]> {
