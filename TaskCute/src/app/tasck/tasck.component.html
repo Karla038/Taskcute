@@ -1,51 +1,37 @@
-<!-- Registro de Tareas -->
-<div class="p-6 bg-gray-100 rounded-lg shadow-md">
+<div class="form-container rounded-lg shadow-md">
   <h1 class="text-2xl font-bold mb-4">Registro de Tareas</h1>
 
-  <!-- Componentes uno sobre otro con espacio entre ellos -->
-  <div class="space-y-4">
-    <div class="mb-4">
-      <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
-      <input id="nombre" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.nombre" />
-    </div>
-
-    <div class="mb-4">
-      <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción:</label>
-      <textarea id="descripcion" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.descripcion"></textarea>
-    </div>
-
-    <div class="mb-4">
-      <label for="fechaVencimiento" class="block text-sm font-medium text-gray-700">Fecha de Vencimiento:</label>
-      <input id="fechaVencimiento" type="date" class="mt-1 block w-full max-w-xs border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" [(ngModel)]="nuevaTarea.fechaVencimiento" />
-    </div>    
-
-    <div>
-      <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" (click)="agregarTarea()">Agregar</button>
-    </div>
-  </div>
-</div>
-
-  <!-- <ul class="mt-4 space-y-2">
-    <li *ngFor="let tarea of tareas" class="flex items-center space-x-4 bg-white rounded-lg p-4 shadow-md">
-      <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" [(ngModel)]="tarea.completada" (change)="actualizarTarea(tarea)" />
-      <div class="flex-1">
-        <strong class="text-lg">{{ tarea.nombre }}</strong> - {{ tarea.descripcion }} 
-        <span class="text-sm text-gray-500">({{ tarea.fechaVencimiento | date:'dd/MM/yyyy' }})</span>
+  <form [formGroup]="tareaForm" (ngSubmit)="agregarTarea()">
+    <div class="space-y-4">
+      <div class="mb-4">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nombre">
+          <mat-error *ngIf="tareaForm.get('nombre')?.invalid && tareaForm.get('nombre')?.touched">El nombre es obligatorio</mat-error>
+        </mat-form-field>
       </div>
-      <button type="button" class="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-700">
-        <i class="pi pi-times"></i>
-      </button>
-    </li>
-  </ul> -->
 
-  <!-- <div style="text-align:center">
-    <h1>
-      Welcome to 
-    </h1>
-    <button (click)="showSuccess()">Show Success Toast</button>
-    <button (click)="showError()">Show Error Toast</button>
-    <button (click)="showWarning()">Show Warning Toast</button>
-    <button (click)="showInfo()">Show Info Toast</button>
-  </div>
-   -->
+      <div class="mb-4">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Descripción" formControlName="descripcion"></textarea>
+          <mat-error *ngIf="tareaForm.get('descripcion')?.invalid && tareaForm.get('descripcion')?.touched">La descripción es obligatoria</mat-error>
+        </mat-form-field>
+      </div>
 
+      <div class="mb-4">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Fecha de Vencimiento</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Fecha de Vencimiento" formControlName="fechaVencimiento">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="tareaForm.get('fechaVencimiento')?.invalid && tareaForm.get('fechaVencimiento')?.touched">La fecha de vencimiento es obligatoria</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="tareaForm.invalid">Agregar</button>
+      </div>
+    </div>
+  </form>
+</div>

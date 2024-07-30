@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServiceTaskService } from '../services/service.task.service';
 import { ToastrService } from 'ngx-toastr';
 
 interface Tarea {
-  id: number;
+  _id: string;
   nombre: string;
   descripcion?: string;
   fechaVencimiento?: Date;
@@ -13,64 +15,56 @@ interface Tarea {
 @Component({
   selector: 'app-tasck',
   templateUrl: './tasck.component.html',
-  styleUrls: ['./tasck.component.css'] // Corregido de styleUrl a styleUrls
+  styleUrls: ['./tasck.component.css']
 })
 export class TasckComponent implements OnInit {
   tareas: Tarea[] = [];
-  nuevaTarea: Tarea = { id: 0, nombre: '', descripcion: '', fechaVencimiento: undefined, completada: false };
+  tareaForm: FormGroup;
 
-  constructor(private tareasService: ServiceTaskService,private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    this.obtenerTareas();
+  constructor(
+    private tareasService: ServiceTaskService,
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder,private toastr: ToastrService
+  ) {
+    this.tareaForm = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      fechaVencimiento: ['', Validators.required]
+    });
   }
 
-  obtenerTareas(): void {
-    this.tareasService.obtenerTareas().subscribe(tareas => this.tareas = tareas);
-  }
+  ngOnInit(): void {}
 
   agregarTarea(): void {
-    if (this.nuevaTarea.nombre.trim()) {
-      this.tareasService.agregarTarea(this.nuevaTarea).subscribe(tarea => {
-        this.tareas.push(tarea);
-        this.nuevaTarea = { id: 0, nombre: '', descripcion: '', fechaVencimiento: undefined, completada: false };
-      });
+    if (this.tareaForm.invalid) {
+      return;
     }
+
+    const nuevaTarea: Tarea = {
+      ...this.tareaForm.value,
+      completada: false, // Valor por defecto para completada
+      idUsuario: '1234'  // Valor fijo para idUsuario
+    };
+
+    this.tareasService.createTask(nuevaTarea).subscribe(
+      response => {
+        this.toastr.success('Tarea agregada con éxito');
+        this.tareaForm.reset();
+      },
+      error => {
+        console.error('Error al agregar tarea:', error);
+        this.mostrarMensaje('Error al agregar la tarea', 'error');
+        this.toastr.error('Error al agregar la tarea',error);
+      }
+    );
   }
 
-
-  
-  eliminarTarea(id: number): void {
-    this.tareasService.eliminarTarea(id).subscribe(() => {
-      this.tareas = this.tareas.filter(tarea => tarea.id !== id);
-    });
-  }
-
-  actualizarTarea(tarea: Tarea): void {
-    this.tareasService.actualizarTarea(tarea).subscribe();
-  }
-
-  showSuccess() {
-    this.toastr.success('¡Hola mundo!', '¡Diversión con Toastr!', {
-      closeButton: true
-    });
-  }
-
-  showError() {
-    this.toastr.error('¡Esto no es bueno!', 'Error grave', {
-      closeButton: true
-    });
-  }
-
-  showWarning() {
-    this.toastr.warning('Estás siendo advertido.', 'Advertencia', {
-      closeButton: true
-    });
-  }
-
-  showInfo() {
-    this.toastr.info('Solo alguna información para ti.', undefined, {
-      closeButton: true
+  mostrarMensaje(mensaje: string, tipo: string) {
+    this.snackBar.open(mensaje, '', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: tipo === 'success' ? 'snackbar-success' : 'snackbar-error'
     });
   }
 }

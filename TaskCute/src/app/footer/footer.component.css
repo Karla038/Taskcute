@@ -1,0 +1,22 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .content {
+    min-height: calc(100vh - 128px); /* Ajusta el tamaño según el contenido */
+    padding: 16px;
+  }
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
