@@ -1,25 +1,30 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="bg-purple-300">
   <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
+    <!-- <mat-icon>menu</mat-icon> -->
   </button>
-  <span>TaskCute</span>
+
+  <a href="#" class="shrink-0">
+    <img class="h-auto w-auto max-w-xs" style="max-height: 6vh;" src="assets/images/logo.png" alt="Logo Citavita">
+  </a>
+  <span class="ml-5 font-medium text-purple-800">TaskCute</span>
+
   <span class="spacer"></span>
   <button mat-button [matMenuTriggerFor]="menu">
-    <span>Menú</span>
+    <span class="ml-5 font-medium text-purple-800">Menú</span>
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon>home</mat-icon>
-      <span>Inicio</span>
+      <span routerLink="/tareas">Registro de tareas</span>
     </button>
     <button mat-menu-item>
       <mat-icon>info</mat-icon>
-      <span>Acerca de</span>
+      <span  routerLink="/list-tareas">Lista de tareas</span>
     </button>
     <button mat-menu-item>
       <mat-icon>contact_mail</mat-icon>
-      <span>Contacto</span>
+      <span>Salir</span>
     </button>
   </mat-menu>
 </mat-toolbar>

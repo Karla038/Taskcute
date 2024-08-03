@@ -34,7 +34,7 @@ export class TaskTabComponent implements OnInit {
       (respuesta: any) => {
         console.log('Respuesta del servicio:', respuesta);
         this.tareas = respuesta.tasks; // Accede a la propiedad 'tasks' del objeto
-        this.toastr.success('Tareas obtenidas exitosamente');
+        // this.toastr.success('Tareas obtenidas exitosamente');
         this.logTareas();
       },
       error => {
@@ -43,7 +43,7 @@ export class TaskTabComponent implements OnInit {
       }
     );
   }
-  
+
 
   eliminarTarea(id: string): void {
     console.log("Iddddddddddddddd",id.toString())
@@ -65,7 +65,7 @@ export class TaskTabComponent implements OnInit {
       () => {
         this.toastr.success('Tarea actualizada exitosamente');
         this.logTareas();
-      
+
       },
       error => {
         console.error('Error al actualizar tarea', error);
@@ -85,7 +85,7 @@ export class TaskTabComponent implements OnInit {
     console.log('Tareas pendientes:', pendientes);
     return pendientes;
   }
-  
+
 
   get tareasCompletadas(): Tarea[] {
     const completadas = this.tareas.filter(tarea => tarea.completada);
@@ -96,24 +96,24 @@ export class TaskTabComponent implements OnInit {
   get tareasVencidas(): Tarea[] {
     const hoy = new Date(); // Fecha actual en la zona horaria local
     console.log('Fecha de hoy:', hoy);
-  
+
     const vencidas = this.tareas.filter(tarea => {
       if (tarea.fechaVencimiento) {
         const fechaVencimiento = new Date(tarea.fechaVencimiento); // Convierte a Date
         // Comparar las fechas en UTC para evitar problemas de zona horaria
         const hoyUTC = new Date(Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), hoy.getUTCDate()));
         const vencimientoUTC = new Date(Date.UTC(fechaVencimiento.getUTCFullYear(), fechaVencimiento.getUTCMonth(), fechaVencimiento.getUTCDate()));
-        
+
         console.log('Fecha de vencimiento:', vencimientoUTC);
         return !tarea.completada && vencimientoUTC < hoyUTC;
       }
       return false; // Si no hay fecha de vencimiento, no es vencida
     });
-  
+
     console.log('Tareas vencidas:', vencidas);
     return vencidas;
   }
-  
+
   private logTareas(): void {
     console.log('Todas las tareas:', this.tareas);
     console.log('Tareas pendientes:', this.tareasPendientes);

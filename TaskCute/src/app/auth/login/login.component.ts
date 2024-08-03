@@ -76,6 +76,7 @@ export class LoginComponent {
       usuario.password = this.inicioFormulario.get('password').value;
       this._autenticacionService.iniciarSesion(usuario).subscribe((respuesta)=>{
           console.log(respuesta)
+          this._router.navigateByUrl('/list-tareas');
           //this._autenticacionService.decodificarPorId(respuesta);
           this.inicioFormulario.reset();
           this.showAlert = true;
@@ -115,7 +116,7 @@ export class LoginComponent {
                     // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
                     // to the correct page after a successful sign in. This way, that url can be set via
                     // routing file and we don't have to touch here.
-                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/list-tareas';
 
                     // Navigate to the redirect url
                     this._router.navigateByUrl(redirectURL);

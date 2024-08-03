@@ -5,6 +5,7 @@ import { Respuesta } from '../../models/Respuesta';
 import { Usuario } from '../../models/Usuario';
 import { FormBuilder, FormGroup, NgForm, Validators, UntypedFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -18,11 +19,16 @@ export class RegisterComponent {
 
   readonly dialog = inject(MatDialog);
 
+  openPrivacyPolicy(): void {
+    window.open('../../../assets/Politica de privacidad.html', '_blank');
+  }
+
   constructor(
       private _autenticacionService: AuthService,
       private _formBuilder: UntypedFormBuilder,
       private _router: Router,
-      private fb: FormBuilder
+      private fb: FormBuilder,
+      private toastr: ToastrService
   ) { }
 
   @ViewChild('registroNgForm') registroNgForm!: NgForm;
@@ -80,8 +86,8 @@ export class RegisterComponent {
     console.log(usuario)
     this._autenticacionService.registrarUsuario(usuario).subscribe({
     next:(respuesta:Respuesta) =>{
-        this.formularioRegistro.reset();
-        this.showAlert = true;
+      this.toastr.success('Se registro con éxito');
+      this.formularioRegistro.reset();
         // Set the alert
 
         this.alert = {
@@ -93,8 +99,8 @@ export class RegisterComponent {
 
     },
     error:(error)=>{
-        console.log(error)
-        this.errorRespuesta(error.error.msg)
+      console.error('Error al resgistrarte', error);
+      this.toastr.error('Error al resgistrarte',error);
     }
     })
 

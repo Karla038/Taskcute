@@ -44,7 +44,7 @@ export class UserService
      */
     get(): Observable<User>
     {
-        return this._httpClient.get<User>('api/common/user').pipe(
+        return this._httpClient.get<User>('/tareas').pipe(
             tap((user) =>
             {
                 this._user.next(user);
