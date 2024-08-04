@@ -22,7 +22,7 @@
       <mat-icon>info</mat-icon>
       <span  routerLink="/list-tareas">Lista de tareas</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="authenticationService.signOut()">
       <mat-icon>contact_mail</mat-icon>
       <span>Salir</span>
     </button>

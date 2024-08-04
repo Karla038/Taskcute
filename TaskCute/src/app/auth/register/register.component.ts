@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/Auth/auth.service';
 import { Respuesta } from '../../models/Respuesta';
 import { Usuario } from '../../models/Usuario';
-import { FormBuilder, FormGroup, NgForm, Validators, UntypedFormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, UntypedFormBuilder, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 
 
@@ -24,58 +25,73 @@ export class RegisterComponent {
   }
 
   constructor(
-      private _autenticacionService: AuthService,
-      private _formBuilder: UntypedFormBuilder,
-      private _router: Router,
-      private fb: FormBuilder,
-      private toastr: ToastrService
+    private _autenticacionService: AuthService,
+    private _formBuilder: UntypedFormBuilder,
+    private _router: Router,
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   @ViewChild('registroNgForm') registroNgForm!: NgForm;
 
-    alert: { message: string } = {
-     // type   : 'success',
-      message: '',
+  alert: { type: string, message: string } = {
+    type: 'success',
+    message: '',
+  };
+  showAlert: boolean = false;
+  emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  public formularioRegistro!: FormGroup;
+
+
+  ngOnInit(): void {
+    this.formularioRegistro = this._formBuilder.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.pattern(this.emailPattern)]],
+      password: ['', Validators.required,this.validatePassword],
+      //role:        ['',[Validators.required]]
+    });
+  }
+
+  // openDialog() {
+  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`);
+  //   });
+  // }
+
+  private errorRespuesta(error: string) {
+    // Re-enable the form
+    this.formularioRegistro.enable();
+
+    // Reset the form
+    this.formularioRegistro.reset();
+
+    // Set the alert
+    this.alert = {
+      type: 'success',
+      message: error,
     };
-    showAlert: boolean = false;
-    public formularioRegistro!:FormGroup;
 
+    // Show the alert
+    this.showAlert = true;
+  }
+  public validatePassword(control: FormControl): Promise<any> | Observable<any> {
+    const password = control.value;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    console.log(control)
+    return new Promise((resolve) => {
+      if (passwordRegex.test(password)) {
+        resolve(null);
+        console.log('false')
+      } else {
+        console.log('true')
+        resolve({ invalidPassword: true });
+      }
+    });
+  }
 
-  ngOnInit(): void
-    {
-        this.formularioRegistro = this._formBuilder.group({
-            name:        ['',[Validators.required]],
-            email:       ['',[Validators.required, Validators.email]],
-            password:    ['',[Validators.required]],
-            //role:        ['',[Validators.required]]
-        });
-    }
-
-    // openDialog() {
-    //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     console.log(`Dialog result: ${result}`);
-    //   });
-    // }
-
-    private errorRespuesta(error:string){
-      // Re-enable the form
-      this.formularioRegistro.enable();
-
-      // Reset the form
-      this.formularioRegistro.reset();
-
-      // Set the alert
-      this.alert = {
-          message: error,
-      };
-
-      // Show the alert
-      this.showAlert = true;
- }
-
-  public registrarUsuario(){
+  public registrarUsuario() {
     this.formularioRegistro.disable();
     this.showAlert = false;
     const usuario = new Usuario();
@@ -85,23 +101,25 @@ export class RegisterComponent {
     //usuario.role = this.formularioRegistro.get('role').value;
     console.log(usuario)
     this._autenticacionService.registrarUsuario(usuario).subscribe({
-    next:(respuesta:Respuesta) =>{
-      this.toastr.success('Se registro con éxito');
-      this.formularioRegistro.reset();
+      next: (respuesta: Respuesta) => {
+        this.toastr.success(respuesta.msg);
+        this.formularioRegistro.reset();
         // Set the alert
 
         this.alert = {
-            //type   : 'success',
-            message: respuesta.msg,
+          type: 'success',
+          message: respuesta.msg,
         };
 
         this._autenticacionService.decodificarPorId(respuesta);
+        this.formularioRegistro.enable();
 
-    },
-    error:(error)=>{
-      console.error('Error al resgistrarte', error);
-      this.toastr.error('Error al resgistrarte',error);
-    }
+      },
+      error: (error) => {
+        this.errorRespuesta(error.error.msg);
+        console.error('Error al resgistrarte', error.error.msg);
+        this.toastr.error('Error al resgistrarte', error.error.msg);
+      }
     })
 
   }

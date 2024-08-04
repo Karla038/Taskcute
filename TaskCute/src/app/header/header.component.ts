@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../guards/authentication.service';
 
 
 
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+  constructor(public authenticationService:AuthenticationService){
+    
+  }
 
 }

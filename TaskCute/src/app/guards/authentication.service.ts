@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthUtils } from './auth.utils';
 import { UserService } from './user/user.service';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService
@@ -15,6 +16,7 @@ export class AuthenticationService
     constructor(
         private _httpClient: HttpClient,
         private _userService: UserService,
+        private ngRouter:Router
     )
     {
     }
@@ -138,6 +140,11 @@ export class AuthenticationService
     {
         // Remove the access token from the local storage
         localStorage.removeItem('accessToken');
+
+        localStorage.removeItem('fechaExpiracion');
+
+        localStorage.removeItem('usuario');
+        this.ngRouter.navigateByUrl('/');
 
         // Set the authenticated flag to false
         this._authenticated = false;
