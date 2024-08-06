@@ -60,7 +60,7 @@
                     Al menos un carácter especial de los siguientes: arroba $, !, %,
                     *, #, ? o &. Debe tener una longitud mínima de 8 caracteres.
                 </mat-error>
-              
+
 
                 <!-- ToS and PP -->
                 <!-- <div class="inline-flex items-end w-full mt-1.5">
@@ -89,7 +89,7 @@
 
                 <!-- Submit button -->
                 <button class="fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'"
-                    [disabled]="formularioRegistro.invalid" (click)="registrarUsuario()">
+                    [disabled]="formularioRegistro.invalid" (click)="registrarUsuario()" [routerLink]="['/users/login']">
                     <span>
                         Crear Cuenta
                     </span>
