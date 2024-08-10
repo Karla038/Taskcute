@@ -13,13 +13,14 @@ const router: Router = inject(Router);
 // Check the authentication status
 return inject(AuthService).checharAutenticacion().pipe(
     switchMap((authenticated) => {
+        console.log(authenticated)
         // If the user is not authenticated...
         if (!authenticated) {
             console.log('Usuario no autenticado');
 
             // Construct the redirect URL
-            const redirectURL = state.url === '/users/sign-out' ? '' : `redirectURL=${state.url}`;
-            const urlTree = router.parseUrl(`/users/login?${redirectURL}`);
+            //const redirectURL = state.url === '/users/sign-out' ? '' : `redirectURL=${state.url}`;
+            const urlTree = router.parseUrl(`/users/login`);
 
             console.log('Redirigiendo a:', urlTree.toString());
             return of(urlTree);
