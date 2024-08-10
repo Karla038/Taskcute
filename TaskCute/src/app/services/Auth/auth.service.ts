@@ -49,6 +49,7 @@ export class AuthService {
   }
 
   checharAutenticacion(): Observable<boolean> {
+    console.log(this.accessToken)
     if (this.accessToken) {
       console.log("autenticado checharAutenticacion")
       return of(true);
@@ -85,7 +86,7 @@ export class AuthService {
 
   public decodeToken(): any {
     const token = this.accessToken;
-    console.log("decodeToken" +token)
+    console.log(token)
     if (!token) {
       throw new Error('No token found');
     }
@@ -94,17 +95,17 @@ export class AuthService {
   }
 
   public decodificarPorId(respuesta: Respuesta) {
-    console.log( "respuesta backend: usuario registrador"+ this.accessToken);
+    console.log(respuesta)
     this.accessToken = respuesta.data;
-    console.log( "access token decodificarPorId"+ this.accessToken);
+    console.log(this.accessToken)
     this.autenticado = true;
-    this.fechaExpiracion = this.decodeToken();
+    this.fechaExpiracion = jwtDecode(this.accessToken);
     localStorage.setItem('fechaExpiracion', this.fechaExpiracion.exp)
     console.log('fechaExpiracion')
     console.log(this.fechaExpiracion)
-    const numero: any = this.decodeToken();
-
-    this.buscarPorId(numero._id).subscribe(data => {
+    const numero: string = this.decodeToken()._id;
+    console.log('numero: ' + numero)
+    this.buscarPorId(numero).subscribe(data => {
       console.log(data)
       this.usuario = data.data;
       setTimeout(() => {
@@ -129,7 +130,7 @@ export class AuthService {
     return this.httpClient.post<Respuesta>(`${this.url}/`, usuario);
   }
 
-  public buscarPorId(_id: string): Observable<Respuesta> {
-    return this.httpClient.get<Respuesta>(`${this.url}/buscar_id/${_id}`);
+  public buscarPorId(id: string): Observable<Respuesta> {
+    return this.httpClient.get<Respuesta>(`${this.url}/buscar_id/${id}`);
   }
 }
