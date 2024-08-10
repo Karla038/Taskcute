@@ -24,19 +24,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { TaskTabComponent } from './task-tab/task-tab.component';
 
-// Importar los módulos de Angular Material
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatTabsModule } from '@angular/material/tabs'; // Importa MatTabsModule
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { TruncatePipe } from './truncate.pipe';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -46,7 +33,6 @@ import { MatMenuModule } from '@angular/material/menu';
     FooterComponent,
     HeaderComponent,
     TaskTabComponent,
-    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -67,20 +53,7 @@ import { MatMenuModule } from '@angular/material/menu';
       preventDuplicates: true,
       closeButton: true // Habilita el botón para cerrar
     }),
-    // Importar los módulos de Angular Material
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTabsModule, // Agrega MatTabsModule aquí
-    RouterModule.forRoot([]) // Configura las rutas si es necesario
-    ,MatSnackBarModule,
-    MatTooltipModule // Importa el módulo de tooltip
-    ,MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule
+    AppRoutingModule // Agrega el AppRoutingModule
   ],
   providers: [
     provideClientHydration(),

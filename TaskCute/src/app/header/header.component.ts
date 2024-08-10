@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../guards/authentication.service';
-
-
 
 @Component({
   selector: 'app-header',
@@ -9,9 +6,5 @@ import { AuthenticationService } from '../guards/authentication.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
-  constructor(public authenticationService:AuthenticationService){
-    
-  }
 
 }
