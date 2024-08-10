@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskTabComponent } from './task-tab/task-tab.component';
 
 @Component({
   selector: 'app-root',

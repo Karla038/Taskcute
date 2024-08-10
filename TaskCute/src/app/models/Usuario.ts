@@ -35,15 +35,13 @@ export class Usuario {
   password: string = '';
   role: string = '';
 
-  constructor(id: string = '', name: string = null , email: string = null, password: string = null, role: string = null) {
+  constructor(id: string = '', name: string = '', email: string = '', password: string = '', role: string = '') {
     this._id = id;
     this.name = name;
     this.email = email;
     this.password = password;
     this.role = role;
   }
-
-  
 }
 
 
